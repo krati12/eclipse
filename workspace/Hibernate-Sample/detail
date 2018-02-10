@@ -1,0 +1,4 @@
+Hibernate Api
+1)Create a Session factory - create by hibernate.cfg.xml
+2)create a seesion from session factory
+3)Use the seesion to save model Objects
