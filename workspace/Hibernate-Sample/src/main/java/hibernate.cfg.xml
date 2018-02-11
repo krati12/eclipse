@@ -8,12 +8,20 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernatedb</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">krati</property>
-        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.connection.pool_size">5</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+       <!-- it create schema every time so next time if you run it delete last 
+       one and createa agian so you lost you last data 
+       <property name="hbm2ddl.auto">create</property>-->
+       <!-- if we use update it will see is there change in schema if not it will just 
+       add data into it and will not create new table 
+        -->
+        <property name="hbm2ddl.auto">update</property>
 
         <mapping class="org.krati.java.Hibernate_Sample.dto.UserDetails" />
+        <mapping class="org.krati.java.Hibernate_Sample.dto.Vehicle" />
+        
     </session-factory>
 </hibernate-configuration>

@@ -2,3 +2,32 @@ Hibernate Api
 1)Create a Session factory - create by hibernate.cfg.xml
 2)create a seesion from session factory
 3)Use the seesion to save model Objects
+
+1)if mark field as static or transiet then database will not create column for that
+because it is going to same for whole table
+
+-> @Temporal(TemporalType.DATE) will save field as date
+-> @Lob - if you have huge amount data or bytestream it autmatically choose Clob or blob
+
+userId is purpose of primary key and have business use then its natural key
+userid is purpose of primary key but dont have any business use then its surrogate key
+
+@GeneratedValue will act as surrogate key and hibernate will generate unique value for you
+ as per its data type define
+ 
+ @value is value object it give value to their object like address give value to user.
+ @entity which have its meaning of its own 
+ 
+ @EmbeddedId will make object as primary key
+ 
+ ->create new table private Set<Address> ListOfAddresses = new HashSet();
+ 
+ 	@ElementCollection
+	/*@JoinTable(name="USER_ADDRESS",
+	joinColumns = @JoinColumn(name="USER_ID")
+	)*/
+	@GenericGenerator(name="sequence-gen",strategy="sequence")
+	@CollectionId(columns = { @Column(name="ADDRESS_ID")}, generator = "sequence-gen", type = @Type(type="long"))
+	private Collection<Address> ListOfAddresses = new ArrayList();
+	
+	->ig fetchtype=eager in collection 
